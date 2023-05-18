@@ -78,7 +78,7 @@ namespace WFPGameOfLife.ViewModels
 
             SwitchIsAliveCommand = new Command<string>((rowColOfCell) => SwitchCellLife(rowColOfCell), _ => CanSwitchCellIsAlive());
 
-            AnimateCommand = new Command<object>(_ => Animate(), _ => CanAnimate());
+            AnimateAsyncCommand = new Command<object>(_ => AnimateAsync(), _ => CanAnimate());
 
             Epoch = _lifeEngine.Epoch;
 
@@ -93,15 +93,19 @@ namespace WFPGameOfLife.ViewModels
             return !_isAnimating && CanEvolve();
         }
 
-        private void Animate()
+        private async void AnimateAsync()
         {
-            if (CanAnimate()) {
+            if (CanAnimate())
+            {
                 _isAnimating = true;
                 while (CanEvolve())
                 {
+                    //do you want to run at a rate that people can see?
+                    //if so uncomment line below
+                    //await Task.Delay(40);
                     Evolve();
                 }
-            
+
             }
             _isAnimating = false;
         }
@@ -150,7 +154,7 @@ namespace WFPGameOfLife.ViewModels
 
         public Command<string> SwitchIsAliveCommand { get; set; }
 
-        public Command<object> AnimateCommand { get; set; }
+        public Command<object> AnimateAsyncCommand { get; set; }
 
     }
 }

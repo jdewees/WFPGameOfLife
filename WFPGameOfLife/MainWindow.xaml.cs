@@ -94,8 +94,7 @@ namespace WFPGameOfLife
 
         private async void Animate_Button_Click_Async(object sender, RoutedEventArgs e)
         {
-            //run a game loop in here basically
-            await Task.Run(() => generationViewModel.AnimateCommand.Execute(null));
+            await Task.Run(() => generationViewModel.AnimateAsyncCommand.Execute(null));
 
         }
     }
