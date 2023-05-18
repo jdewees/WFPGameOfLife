@@ -1,0 +1,23 @@
+﻿<Window x:Class="WFPGameOfLife.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFPGameOfLife"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400">
+    <DockPanel Height="Auto">
+        <TextBlock DockPanel.Dock="Top">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="Size: {0}x{0} | Epoch: {1}">
+                    <Binding Path="GameSize" />
+                    <Binding Path="Epoch" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <Button DockPanel.Dock="Top" Command="{Binding EvolveCommand}" Width="Auto">Evolve</Button>
+        <Button DockPanel.Dock="Top" Command="{Binding ResetCommand}" Width="Auto">Reset</Button>
+        <Button DockPanel.Dock="Top" Click="Animate_Button_Click_Async" Width="Auto">Animate</Button>
+        <Grid DockPanel.Dock="Bottom" Name="GameGrid" ShowGridLines="False" Height="Auto"></Grid>
+    </DockPanel>
+</Window>
